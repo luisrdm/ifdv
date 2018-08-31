@@ -16,6 +16,34 @@ public class User {
     //Choose not to model Login, Dob, Registered, ID
 
 
+    public String getGender() {
+        return gender;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getCell() {
+        return cell;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
     @Override
     public String toString() {
         return name.getTitle() + " " + name.getFirst() + " " + name.getLast() + "\n";
