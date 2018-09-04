@@ -11,12 +11,14 @@ import com.luisrdm.ifdv.model.User;
 
 public class MainActivity extends AppCompatActivity implements FragmentHome.InterfaceNotifierFromFragmentHome {
 
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_MainActivity_root, new FragmentHome(), null);
         //fragmentTransaction.addToBackStack(null);
@@ -26,5 +28,15 @@ public class MainActivity extends AppCompatActivity implements FragmentHome.Inte
     @Override
     public void notifyFromFragmentHome(User user) {
         Toast.makeText(this, "Main activity: " + user.toString(), Toast.LENGTH_SHORT).show();
+
+        FragmentDetail fragmentDetail = new FragmentDetail();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(FragmentDetail.USERKEY, user);
+        fragmentDetail.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout_MainActivity_root, fragmentDetail, null);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

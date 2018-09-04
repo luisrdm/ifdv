@@ -3,4 +3,5 @@
     <dimen name="margin_between_words">3dp</dimen>
     <dimen name="regular_text_font_size">16sp</dimen>
     <dimen name="spacer_sm">10dp</dimen>
+    <dimen name="spacer_md">16dp</dimen>
 </resources>

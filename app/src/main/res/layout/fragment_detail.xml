@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".view.FragmentDetail"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <!--User photo-->
+        <ImageView
+            android:id="@+id/imageView_fragmentDetail_photo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/spacer_md"
+            android:contentDescription="@string/user_photo" />
+
+        <!-- full name tag -->
+        <TextView
+            android:id="@+id/nameTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView_fragmentDetail_photo"
+            android:text="@string/name" />
+
+        <!--title-->
+        <TextView
+            android:id="@+id/textView_fragmentDetail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/nameTag"
+            android:layout_marginLeft="@dimen/spacer_md"
+            android:layout_marginStart="@dimen/spacer_md"
+            tools:text="Mr" />
+
+        <!--name-->
+        <TextView
+            android:id="@+id/textView_fragmentDetail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/textView_fragmentDetail_title"
+            android:layout_marginLeft="@dimen/margin_between_words"
+            android:layout_marginStart="@dimen/margin_between_words"
+            android:layout_toEndOf="@id/textView_fragmentDetail_title"
+            android:layout_toRightOf="@id/textView_fragmentDetail_title"
+            tools:text="John" />
+
+        <!--surname-->
+        <TextView
+            android:id="@+id/textView_fragmentDetail_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/textView_fragmentDetail_title"
+            android:layout_marginLeft="@dimen/margin_between_words"
+            android:layout_marginStart="@dimen/margin_between_words"
+            android:layout_toEndOf="@id/textView_fragmentDetail_name"
+            android:layout_toRightOf="@id/textView_fragmentDetail_name"
+            tools:text="Doe" />
+
+
+        <!--email-->
+        <TextView
+            android:id="@+id/emailTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragmentDetail_title"
+            android:text="@string/email" />
+
+        <TextView
+            android:id="@+id/textView_fragmentDetail_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTag"
+            tools:text="mail@mail.com" />
+
+        <!--cell-->
+        <TextView
+            android:id="@+id/cellTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragmentDetail_email"
+            android:text="@string/cell_phone" />
+
+        <TextView
+            android:id="@+id/textView_fragmentDetail_cell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cellTag"
+            tools:text="(011)15 5555 5555" />
+
+        <!--phone-->
+        <TextView
+            android:id="@+id/phoneTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragmentDetail_cell"
+            android:text="@string/phone" />
+
+        <TextView
+            android:id="@+id/textView_fragmentDetail_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phoneTag"
+            tools:text="5555 5555" />
+
+        <!--gender-->
+        <TextView
+            android:id="@+id/genderTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragmentDetail_phone"
+            android:text="@string/gender" />
+
+        <TextView
+            android:id="@+id/textView_fragmentDetail_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genderTag"
+            tools:text="Male" />
+
+        <!--State-->
+        <TextView
+            android:id="@+id/stateTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragmentDetail_phone"
+            android:text="@string/gender" />
+
+        <TextView
+            android:id="@+id/textView_fragmentDetail_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stateTag"
+            tools:text="Utah" />
+
+    </RelativeLayout>
+</ScrollView>

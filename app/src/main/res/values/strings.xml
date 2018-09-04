@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ifdv</string>
     <string name="user_photo">User photo</string>
+    <string name="name">Name:</string>
+    <string name="email">Email</string>
+    <string name="cell_phone">Cell phone</string>
+    <string name="phone">Phone</string>
+    <string name="gender">Gender</string>
 </resources>
