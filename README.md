@@ -1,3 +1,2 @@
 # ifdv
-# Luis R. Díaz Muñiz
-# luisrdm@gmail.com
+# Luis R. DÃ­az MuÃ±iz
