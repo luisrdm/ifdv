@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.luisrdm.Util.ResultListener;
 import com.luisrdm.ifdv.R;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotifierFromAdapterHome {
     private InterfaceNotifierFromFragmentHome host;
+    private TextView textViewNoInternet;
 
     public FragmentHome() {
         // Required empty public constructor
@@ -38,11 +40,12 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         final ProgressBar progressBar = view.findViewById(R.id.progressBar_fragmentHome);
+        textViewNoInternet = view.findViewById(R.id.textView_fragmentHome_noInternet);
+        textViewNoInternet.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
         Integer resourceID = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resourceID);
-
 
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerView_fragmentHome);
         recyclerView.setLayoutAnimation(animation);
@@ -57,7 +60,11 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
             @Override
             public void finish(List<User> result) {
                 progressBar.setVisibility(View.GONE);
-                adapterUser.updateDataset(result, recyclerView);
+                if(result != null) {
+                    adapterUser.updateDataset(result, recyclerView);
+                } else {
+                    textViewNoInternet.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -70,7 +77,7 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
     }
 
     public interface InterfaceNotifierFromFragmentHome {
-        public void notifyFromFragmentHome(User user);
+        void notifyFromFragmentHome(User user);
     }
 
     @Override

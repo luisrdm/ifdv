@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Controller {
 
-    private Context context;
+    private final Context context;
 
     public Controller(Context context) {
         this.context = context;

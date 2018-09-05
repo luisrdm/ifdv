@@ -6,10 +6,10 @@
     android:orientation="horizontal"
     android:layout_marginBottom="@dimen/spacer_md"
     android:layout_marginLeft="@dimen/spacer_sm"
-    >
+    android:layout_marginStart="@dimen/spacer_sm">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView_recyvlerViewDetail_photo"
+        android:id="@+id/imageView_recyclerViewDetail_photo"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:scaleType="centerCrop"
@@ -32,9 +32,9 @@
         android:layout_marginTop="@dimen/spacer_sm"
         android:textSize="@dimen/text_font_size_regular"
         android:ellipsize="end"
-        android:layout_toRightOf="@id/imageView_recyvlerViewDetail_photo"
-        android:layout_toEndOf="@id/imageView_recyvlerViewDetail_photo"
-        android:layout_alignTop="@id/imageView_recyvlerViewDetail_photo"
+        android:layout_toRightOf="@id/imageView_recyclerViewDetail_photo"
+        android:layout_toEndOf="@id/imageView_recyclerViewDetail_photo"
+        android:layout_alignTop="@id/imageView_recyclerViewDetail_photo"
         />
 
 </RelativeLayout>

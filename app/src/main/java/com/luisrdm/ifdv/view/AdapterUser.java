@@ -24,11 +24,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Luis R. Díaz Muñiz on 31/08/2018.
  * you can reach me at luisrdm@gmail.com
  */
-public class AdapterUser extends RecyclerView.Adapter {
+class AdapterUser extends RecyclerView.Adapter {
 
-    private Context context;
+    private final Context context;
     private List<User> listOfUsers;
-    private InterfaceNotifierFromAdapterHome interfaceNotifierFromAdapterHome;
+    private final InterfaceNotifierFromAdapterHome interfaceNotifierFromAdapterHome;
 
     public AdapterUser(ArrayList<User> users, Context context, InterfaceNotifierFromAdapterHome interfaceNotifierFromAdapterHome) {
         listOfUsers = users;
@@ -52,9 +52,7 @@ public class AdapterUser extends RecyclerView.Adapter {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View cellView = inflater.inflate(R.layout.recycler_view_user_cell,parent,false);
 
-        UserHolder userHolder = new UserHolder(cellView);
-
-        return userHolder;
+        return new UserHolder(cellView);
     }
 
     @Override
@@ -70,13 +68,13 @@ public class AdapterUser extends RecyclerView.Adapter {
     }
 
     private class UserHolder extends RecyclerView.ViewHolder {
-        private TextView textViewFullName;
-        private CircleImageView imageViewPhoto;
+        private final TextView textViewFullName;
+        private final CircleImageView imageViewPhoto;
 
-        public UserHolder(View itemView) {
+        UserHolder(View itemView) {
             super(itemView);
             textViewFullName = itemView.findViewById(R.id.textView_recyclerViewDetail_fullName);
-            imageViewPhoto = itemView.findViewById(R.id.imageView_recyvlerViewDetail_photo);
+            imageViewPhoto = itemView.findViewById(R.id.imageView_recyclerViewDetail_photo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,7 +84,7 @@ public class AdapterUser extends RecyclerView.Adapter {
             });
         }
 
-        public void bindUser(User user){
+        void bindUser(User user){
             textViewFullName.setText(user.getName().getTitle() + " " + user.getName().getFirst() + " " + user.getName().getLast());
             RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.no_image).error(R.drawable.no_image).dontAnimate();
             Glide.with(context).load(user.getPicture().getMedium()).apply(requestOptions).into(imageViewPhoto);

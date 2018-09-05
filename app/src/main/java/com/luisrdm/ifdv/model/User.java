@@ -17,6 +17,10 @@ public class User implements Serializable{
 
     //Choose not to model Login, Dob, Registered, ID
 
+    public User(Name name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public String getGender() {
         return gender;

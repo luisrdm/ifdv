@@ -18,13 +18,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DAO_Internet {
 
-    private String baseURL;
-    private Retrofit retrofit;
-    private ServicesRandomUser servicesRandomUser;
+    private final ServicesRandomUser servicesRandomUser;
 
     public DAO_Internet() {
-        baseURL = "https://randomuser.me/";
-        retrofit = new Retrofit.Builder()
+        String baseURL = "https://randomuser.me/";
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory
                         .create())
@@ -38,8 +36,12 @@ public class DAO_Internet {
             @Override
             public void onResponse(Call<UserContainer> call, Response<UserContainer> response) {
                 UserContainer userContainer = response.body();
-                List<User> result = userContainer.getResults();
-                resultListener.finish(result);
+                if(userContainer != null) {
+                    List<User> result = userContainer.getResults();
+                    resultListener.finish(result);
+                } else {
+                    resultListener.finish(null);
+                }
             }
 
             @Override

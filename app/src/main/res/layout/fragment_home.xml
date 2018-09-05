@@ -13,6 +13,17 @@
         android:layout_gravity="center"
         />
 
+    <TextView
+        android:id="@+id/textView_fragmentHome_noInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="@dimen/text_font_size_medium"
+        android:text="@string/please_check_your_internet_connection_and_try_again"
+        android:layout_margin="@dimen/spacer_md"
+        android:layout_gravity="center_horizontal"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:id="@+id/recyclerView_fragmentHome"

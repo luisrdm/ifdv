@@ -11,6 +11,11 @@ public class Name implements Serializable{
     private String first;
     private String last;
 
+    public Name(String first, String last) {
+        this.first = first;
+        this.last = last;
+    }
+
     public String getTitle() {
         return title;
     }

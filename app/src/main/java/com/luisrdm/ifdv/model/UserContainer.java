@@ -8,7 +8,7 @@ import java.util.List;
  * you can reach me at luisrdm@gmail.com
  */
 public class UserContainer {
-    private List<User> results;
+    private final List<User> results;
 
     public UserContainer() {
         results = new ArrayList<>();
