@@ -5,9 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".view.FragmentHome">
 
+    <ProgressBar
+        android:id="@+id/progressBar_fragmentHome"
+        style="?android:progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
     <android.support.v7.widget.RecyclerView
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:id="@+id/recyclerView_fragmentHome"
+        android:layout_marginTop="@dimen/spacer_sm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 
 </FrameLayout>

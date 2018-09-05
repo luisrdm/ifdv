@@ -4,11 +4,14 @@ package com.luisrdm.ifdv.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.ProgressBar;
 
 import com.luisrdm.Util.ResultListener;
 import com.luisrdm.ifdv.R;
@@ -34,9 +37,17 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_fragmentHome);
+        final ProgressBar progressBar = view.findViewById(R.id.progressBar_fragmentHome);
+        progressBar.setVisibility(View.VISIBLE);
+
+        Integer resourceID = R.anim.layout_animation_fall_down;
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resourceID);
+
+
+        final RecyclerView recyclerView = view.findViewById(R.id.recyclerView_fragmentHome);
+        recyclerView.setLayoutAnimation(animation);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
         final AdapterUser adapterUser = new AdapterUser(new ArrayList<User>(), getContext(), this);
         recyclerView.setAdapter(adapterUser);
@@ -45,7 +56,8 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
         controller.obtainRandomUsers(new ResultListener<List<User>>() {
             @Override
             public void finish(List<User> result) {
-                adapterUser.updateDataset(result);
+                progressBar.setVisibility(View.GONE);
+                adapterUser.updateDataset(result, recyclerView);
             }
         });
 

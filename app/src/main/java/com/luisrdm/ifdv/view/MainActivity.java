@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements FragmentHome.Inte
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_MainActivity_root, new FragmentHome(), null);
-        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

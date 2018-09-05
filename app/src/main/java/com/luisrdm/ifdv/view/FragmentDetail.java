@@ -6,13 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.luisrdm.ifdv.R;
 import com.luisrdm.ifdv.model.User;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,22 +35,19 @@ public class FragmentDetail extends Fragment {
         Bundle bundle = getArguments();
         User user = (User) bundle.getSerializable(USERKEY);
 
-        ImageView imageViewPhoto = view.findViewById(R.id.imageView_fragmentDetail_photo);
+        CircleImageView imageViewPhoto = view.findViewById(R.id.imageView_fragmentDetail_photo);
         TextView textViewTitle = view.findViewById(R.id.textView_fragmentDetail_title);
         TextView textViewName = view.findViewById(R.id.textView_fragmentDetail_name);
         TextView textViewSurname = view.findViewById(R.id.textView_fragmentDetail_surname);
         TextView textViewEmail = view.findViewById(R.id.textView_fragmentDetail_email);
-        TextView textViewCell = view.findViewById(R.id.textView_fragmentDetail_cell);
-        TextView textViewPhone = view.findViewById(R.id.textView_fragmentDetail_phone);
-        TextView textViewGender = view.findViewById(R.id.textView_fragmentDetail_gender);
-        TextView textViewState = view.findViewById(R.id.textView_fragmentDetail_state);
 
-        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.no_image).error(R.drawable.no_image);
+        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.no_image).error(R.drawable.no_image).dontAnimate();
         Glide.with(getContext()).load(user.getPicture().getLarge()).apply(requestOptions).into(imageViewPhoto);
 
         textViewTitle.setText(user.getName().getTitle());
         textViewName.setText(user.getName().getFirst());
         textViewSurname.setText(user.getName().getLast());
+        textViewEmail.setText(user.getEmail());
 
         return view;
     }

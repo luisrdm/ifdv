@@ -6,7 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,8 @@ import com.luisrdm.ifdv.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Luis R. Díaz Muñiz on 31/08/2018.
@@ -33,16 +36,21 @@ public class AdapterUser extends RecyclerView.Adapter {
         this.interfaceNotifierFromAdapterHome = interfaceNotifierFromAdapterHome;
     }
 
-    public void updateDataset(List<User> listOfUsers){
+    public void updateDataset(List<User> listOfUsers, RecyclerView recyclerView){
         this.listOfUsers = listOfUsers;
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
         notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View cellView = inflater.inflate(R.layout.recycler_view_user_detail,parent,false);
+        View cellView = inflater.inflate(R.layout.recycler_view_user_cell,parent,false);
 
         UserHolder userHolder = new UserHolder(cellView);
 
@@ -62,16 +70,12 @@ public class AdapterUser extends RecyclerView.Adapter {
     }
 
     private class UserHolder extends RecyclerView.ViewHolder {
-        private TextView textViewTitle;
-        private TextView textViewName;
-        private TextView textViewSurname;
-        private ImageView imageViewPhoto;
+        private TextView textViewFullName;
+        private CircleImageView imageViewPhoto;
 
         public UserHolder(View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.textView_recyclerViewDetail_title);
-            textViewName = itemView.findViewById(R.id.textView_recyclerViewDetail_name);
-            textViewSurname = itemView.findViewById(R.id.textView_recyclerViewDetail_surname);
+            textViewFullName = itemView.findViewById(R.id.textView_recyclerViewDetail_fullName);
             imageViewPhoto = itemView.findViewById(R.id.imageView_recyvlerViewDetail_photo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +87,9 @@ public class AdapterUser extends RecyclerView.Adapter {
         }
 
         public void bindUser(User user){
-            textViewTitle.setText(user.getName().getTitle());
-            textViewName.setText(user.getName().getFirst());
-            textViewSurname.setText(user.getName().getLast());
-            //Breaks MVC?
-            RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.no_image).error(R.drawable.no_image);
-            Glide.with(context).load(user.getPicture().getThumbnail()).apply(requestOptions).into(imageViewPhoto);
+            textViewFullName.setText(user.getName().getTitle() + " " + user.getName().getFirst() + " " + user.getName().getLast());
+            RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.no_image).error(R.drawable.no_image).dontAnimate();
+            Glide.with(context).load(user.getPicture().getMedium()).apply(requestOptions).into(imageViewPhoto);
         }
     }
 
