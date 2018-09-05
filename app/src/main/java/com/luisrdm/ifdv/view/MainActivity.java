@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.luisrdm.ifdv.R;
 import com.luisrdm.ifdv.model.User;
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements FragmentHome.Inte
 
     @Override
     public void notifyFromFragmentHome(User user) {
-        Toast.makeText(this, "Main activity: " + user.toString(), Toast.LENGTH_SHORT).show();
-
         FragmentDetail fragmentDetail = new FragmentDetail();
         Bundle bundle = new Bundle();
         bundle.putSerializable(FragmentDetail.USERKEY, user);
