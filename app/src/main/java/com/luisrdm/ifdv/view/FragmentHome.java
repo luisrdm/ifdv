@@ -4,6 +4,7 @@ package com.luisrdm.ifdv.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
         textViewNoInternet.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
+
         Integer resourceID = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resourceID);
 
@@ -55,6 +57,23 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
         final AdapterUser adapterUser = new AdapterUser(new ArrayList<User>(), getContext(), this);
         recyclerView.setAdapter(adapterUser);
 
+        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipeRefresh_fragmentHome);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                textViewNoInternet.setVisibility(View.GONE);
+                getRandomUsers(progressBar, recyclerView, adapterUser);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        getRandomUsers(progressBar, recyclerView, adapterUser);
+
+        return view;
+    }
+
+    private void getRandomUsers(final ProgressBar progressBar, final RecyclerView recyclerView, final AdapterUser adapterUser) {
         Controller controller = new Controller(getActivity());
         controller.obtainRandomUsers(new ResultListener<List<User>>() {
             @Override
@@ -67,8 +86,6 @@ public class FragmentHome extends Fragment implements AdapterUser.InterfaceNotif
                 }
             }
         });
-
-        return view;
     }
 
     @Override

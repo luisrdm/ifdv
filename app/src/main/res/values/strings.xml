@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ifdv</string>
     <string name="user_photo">User photo</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
-    <string name="please_check_your_internet_connection_and_try_again">Please check your Internet connection and try again.</string>
+    <string name="please_check_your_internet_connection_and_try_again">Please check your Internet connection and pull to refresh.</string>
 </resources>
